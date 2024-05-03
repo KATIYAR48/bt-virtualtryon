@@ -14,13 +14,27 @@ import streamlit.components.v1 as components
 
 def show_option1_app():
     st.title("OOTDiffusion")
-    st.write("- It offers precise outfit alignment without warping, ensuring a natural fit and realistic fabric details.")
+    st.write("""- It offers precise outfit alignment without warping, ensuring a natural fit and realistic fabric details.
+             - It is divided into two parts: 
+             1. Upper Body
+             2. Lower Body/Full Body""")
 
     # Display the "help" button on the top right corner
     if st.button("Help", key="option1_help_button", help="Show usage instructions for Option 1 app"):
-        # When the "help" button is clicked, show the usage instructions in a modal dialog
-        with st.expander("Usage instructions for OOTDiffusion"):
-            st.write("Usage instructions for OOTDiffusion")
+        # When the "help" button is clicked, show the usage instructions directly below the button
+        desc=("""
+        The app has two parts:
+        1. **For Upper body Try on**
+        - Upload an image of a model and the garment
+            (you can also select from the examples given below)
+        - Hit "--> Run <--"
+        2. **For Lower body/Full body Try on**
+        - Upload an image of a model and the garment
+            (you can also select from the examples given below)
+        - Select the garment category (upper-body/lower-body/dress)
+        - Hit "--> Run <--"
+        """)
+        st.markdown(desc)
 
     # Add the code for the Option 1 app here
     iframe_src = "https://levihsu-ootdiffusion.hf.space"
@@ -29,7 +43,10 @@ def show_option1_app():
 def show_landing_page():
     col1, col2, col3 = st.columns([2, 2, 1])
     with col1:
+        # st.image("Cover.jpeg", width=800)
+        # Change the font and size of the title
         st.title("Virtual Try-On")
+
     with col3:
         st.image("BugendaiTech LOGO.png", width=200)
 
@@ -45,7 +62,7 @@ def show_landing_page():
 
     st.markdown(description)
 
-    selected_option = st.selectbox("Select an option", ["Select an option", "OOTDiffusion", "IDM-VTON", "OutfitAnyone"])
+    selected_option = st.selectbox("Select a Model", ["Select an option", "OOTDiffusion", "IDM-VTON", "OutfitAnyone"])
 
     if selected_option == "OOTDiffusion":
         show_option1_app()
@@ -56,13 +73,19 @@ def show_landing_page():
 
 def show_option2_app():
     st.title("IDM-VTON")
-    st.write("- It allows you to virtually try on any clothing item, regardless of your body type or the outfit’s style.")
+    st.write("- It is an advanced virtual Try On Model, it allows you to virtually try on any clothing item, regardless of your body type or the outfit’s style.")
 
     # Display the "help" button on the top right corner
-    if st.button("Help", key="option2_help_button", help="Show usage instructions for IDM-VTON"):
+    # if st.button("Help", key="option2_help_button", help="Show usage instructions for IDM-VTON"):
         # When the "help" button is clicked, show the usage instructions in a modal dialog
-        with st.expander("Usage instructions for IDM-VTON"):
-            st.write("Usage instructions for IDM-VTON")
+    with st.expander("Usage instructions for IDM-VTON"):
+        st.write("""
+                 - Upload an Image of a model and the Garment
+                    (You can also select from the examples given below)
+                 - Select **Use auto-generated mask**, for Easier Auto Masking
+                 - Write down the Garment Description in the space below the **Garment Image**
+                 - Hit "--> **Try-On** <--
+                 - The Final Output will be shown Below""")
 
     # Add the code for the Option 2 app here
     iframe_src = "https://yisol-idm-vton.hf.space"
@@ -72,11 +95,13 @@ def show_option3_app():
     st.title("OutfitAnyone")
     st.write("- It adapts to various body shapes and poses, ensuring natural and well-fitted clothing representations.")
 
-    # Display the "help" button on the top right corner
-    if st.button("Help", key="option3_help_button", help="Show usage instructions for OutfitAnyone"):
-        # When the "help" button is clicked, show the usage instructions in a modal dialog
-        with st.expander("Usage instructions for OutfitAnyone"):
-            st.write("Usage instructions for OutfitAnyone")
+    with st.expander("Usage instructions for OutfitAnyone"):
+        st.write("""
+                 1. Select a Model from the options available.
+                 2. Upload an Image of Top Garment/Lower Garment
+                    (You can also select from the examples given below)
+                 3. Hit --> **Run** <--
+                 """)
 
     # Add the code for the Option 2 app here
     iframe_src = "https://humanaigc-outfitanyone.hf.space"
